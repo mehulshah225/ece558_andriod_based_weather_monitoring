@@ -9,10 +9,9 @@ broker = "broker.hivemq.com"
 client = paho.Client()
 client.connect(broker, 1883, 60)
 
-
 def push_button(flag):
-    GPIO.setwarnings(False) # Ignore warning for now
-    GPIO.setmode(GPIO.BCM) # Use physical pin numbering
+    GPIO.setwarnings(False) 
+    GPIO.setmode(GPIO.BCM)                                       # Use physical pin numbering
     GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) 
     while True: 
         if GPIO.input(22) == GPIO.HIGH:
@@ -30,17 +29,17 @@ def aht20():
     i2c = board.I2C()
     sensor = adafruit_ahtx0.AHTx0(i2c)
     while True:
-        #print("\nTemp: %0.2f C" % sensor.temperature)
-        #print("Humidity: %0.2f %%" % sensor.relative_humidity)
+        print("\nTemp: %0.2f C" % sensor.temperature)
+        print("Humidity: %0.2f %%" % sensor.relative_humidity)
         client.publish("mehul/sensor/temp",  sensor.temperature)
         client.publish("mehul/sensor/humidity", sensor.relative_humidity)
         time.sleep(interval)
         print(interval)
         
 def LED():
-    GPIO.setwarnings(False) # Ignore warning for now
-    GPIO.setmode(GPIO.BCM) # Use physical pin numbering
-    GPIO.setup(18, GPIO.OUT, initial=GPIO.LOW) # Set pin 8 to be an output pin and set initial value to low (off)
+    GPIO.setwarnings(False) 
+    GPIO.setmode(GPIO.BCM) 
+    GPIO.setup(18, GPIO.OUT, initial=GPIO.LOW)    # Set pin 18 to be an output pin and set initial value to low (off)
 
 # MQTT callback methods
 def on_connect(client, userdata, flags, rc):    
@@ -65,6 +64,7 @@ def on_subscribe(client, userdata, mid, granted_qos):
     print("interval".format(granted_qos[0]))
     
 def on_message(client, userdata, msg):
+    global interval
     s = str(msg.payload, encoding="UTF_8")
     print("retrieved message: " + s)
     if msg.topic == "mehul/led":
@@ -94,4 +94,4 @@ if __name__ == '__main__':
     client.on_subscribe = on_subscribe
     client.on_message = on_message
     client.loop_forever()
-    
+                
