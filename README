@@ -1,0 +1,10 @@
+ECE 558 Project #2 -- Build a internet-connected device using MQTT
+
+Although ECE 558 is entitled Embedded Systems Programming all we have produced so far has been software running on an Android device or the Kotlin console. 
+That’s about to change. Project 2 has significant hardware and software components to it and provides a chance for you to gain experience building an application for the Internet of Things (IoT). 
+I will be using a Raspberry PI 3, 3B or 4 (RPi) or an Adafruit Huzzah32 to host your MQTT clients, a low cost temperature sensor (ex: Adafruit AHT20 breakout board) and some discrete components and jumper wires to add an LED and pushbutton to the mix. 
+
+I will use your Android device to run an app that uses MQTT to exchange commands and responses with an MQTT client running on the RPi or Huzzah32. 
+The Android app should be programmed in Kotlin and we suggest using Python for the MQTT clients. 
+If you are using the Huzzah32 consider using the Arduino support for the board and an MQTT C++ client (there are several). 
+Your MQTT broker can be a public cloud-based MQTT broker like the HiveMQ public broker (broker.hivemq.com/1883. If you are running your client on the RPI instead of the Huzzah32 you can start a Mosquitto broker service on the RPi.
