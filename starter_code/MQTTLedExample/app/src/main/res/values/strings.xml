@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MQTT Led Example</string>
+    <string name="liteon_btn_label">Turn LED ON</string>
+    <string name="liteoff_btn_label">Turn LED OFF</string>
+    <string name="connect_btn_label">Connect</string>
+    <string name="disconnect_btn_label">Disconnect</string>
+</resources>
